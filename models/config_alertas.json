@@ -1,0 +1,34 @@
+{
+  "alertas_reales": {
+    "alerta_residuos": {
+      "variable": "residuos_ton * peso_turistico",
+      "umbrales": {
+        "Crítico": ">= 68719.49 (p80)",
+        "Alerta": ">= 15188.76 (p60)",
+        "Estable": "< 15188.76"
+      }
+    },
+    "alerta_presion": {
+      "variable": "score_pca",
+      "umbrales": {
+        "Crítico": ">= 18.70 (p80)",
+        "Alerta": ">= 7.50 (p60)",
+        "Estable": "< 7.50"
+      }
+    },
+    "alerta_sanitaria": {
+      "variable": "dengue_ctx + oni_ctx",
+      "umbrales": {
+        "Riesgo brote": "dengue >= 76.0 (p80) Y oni > 0.5",
+        "Vigilancia": "dengue >= 76.0 (p80)",
+        "Normal": "resto"
+      }
+    }
+  },
+  "alertas_simuladas": {
+    "alerta_hidrica": "SIMULADO — sin estación IDEAM de agua en Santa Marta",
+    "alerta_servicios": "SIMULADO — sin dato de saturación de servicios públicos",
+    "alerta_gentrificacion": "SIMULADO — sin dato de arriendos/presión habitacional"
+  },
+  "metodo": "Umbralización por percentiles (p60, p80) sobre datos reales de Santa Marta"
+}

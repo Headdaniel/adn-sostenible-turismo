@@ -1,0 +1,19 @@
+# Entornos virtuales
+venv/
+v/
+env/
+__pycache__/
+*.pyc
+
+# Credenciales — NUNCA versionar
+.env
+*.key
+secrets.json
+
+# Sistema
+.DS_Store
+.ipynb_checkpoints/
+
+# Temporales
+*.log
+*.tmp

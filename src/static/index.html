@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADN Sostenible · Inteligencia Turística — Santa Marta</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- Login (colores del sistema ADN) -->
+<div id="login">
+  <div class="login-card">
+    <div class="login-brand">
+      <span class="login-mark">ADN</span>
+      <span class="login-sub">sostenible</span>
+    </div>
+    <p class="login-tagline">Sistema de Inteligencia Predictiva de Turismo Sostenible</p>
+
+    <label class="login-label">Usuario</label>
+    <div class="login-field">
+      <span class="login-ico">◔</span>
+      <input type="email" placeholder="analista@destino.gov.co" autocomplete="off"/>
+    </div>
+
+    <label class="login-label">Contraseña</label>
+    <div class="login-field">
+      <span class="login-ico">⚿</span>
+      <input type="password" placeholder="••••••••"/>
+    </div>
+
+    <div class="login-row">
+      <label class="login-check"><input type="checkbox"/> Recordar este dispositivo</label>
+      <a href="#" class="login-link">¿Olvidaste tu contraseña?</a>
+    </div>
+
+    <button id="loginBtn" class="login-btn">Ingresar al panel →</button>
+    <p class="login-foot">Desarrollado por Simbiotic SAS BIC</p>
+  </div>
+</div>
+
+<div id="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">ADN</div>
+      <div class="brand-sub">sostenible</div>
+      <div class="brand-tag">Inteligencia Turística</div>
+    </div>
+
+    <nav class="side-nav">
+      <div class="nav-item active">Panel General</div>
+    </nav>
+
+    <div class="year-picker">
+      <label for="yearSelect">Periodo de análisis</label>
+      <select id="yearSelect"></select>
+    </div>
+
+    <div class="ops">
+      <div class="ops-title">Centro de Operaciones</div>
+      <div class="ops-status"><span class="dot"></span>Sistema Activo</div>
+      <ul class="ops-meta" id="opsMeta"><li>Cargando…</li></ul>
+    </div>
+
+    <button id="logoutBtn" class="logout-btn">⏻ Cerrar sesión</button>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Sistema de Inteligencia Predictiva de Turismo Sostenible</h1>
+        <p>Resumen de indicadores clave y alertas territoriales · Santa Marta</p>
+      </div>
+      <div class="topbar-badge" id="modelBadge">XGBoost · en vivo</div>
+    </header>
+
+    <!-- KPI cards -->
+    <section class="kpis" id="kpis">
+      <div class="kpi" id="kpiScoreCard"><span class="kpi-label">Score Territorial <i class="info" title="Mide la presión sobre el territorio. A MAYOR score, MAYOR presión (peor).">?</i></span><span class="kpi-value"><span id="kpiScoreIcon" class="lvl-icon"></span><span id="kpiScore">—</span></span><span class="kpi-foot" id="kpiScoreFoot"></span></div>
+      <div class="kpi"><span class="kpi-label">Zonas Prioritarias</span><span class="kpi-value" id="kpiZonas">—</span><span class="kpi-foot">Riesgo a vigilar</span></div>
+      <div class="kpi"><span class="kpi-label">Alertas Activas</span><span class="kpi-value" id="kpiAlertas">—</span><span class="kpi-foot">En el territorio</span></div>
+      <div class="kpi" id="kpiTendCard"><span class="kpi-label">Tendencia Territorial <i class="info" title="Cambio del Score Territorial frente al año anterior, en puntos del índice.">?</i></span><span class="kpi-value"><span id="kpiTendArrow" class="trend-arrow"></span><span id="kpiTend">—</span></span><span class="kpi-foot" id="kpiTendFoot">vs. año anterior</span></div>
+    </section>
+
+    <!-- Map + decision panel -->
+    <section class="grid-map">
+      <div class="panel map-panel">
+        <div class="map-legend">
+          <span class="lg"><i class="sw estable"></i>Estable</span>
+          <span class="lg"><i class="sw riesgo"></i>Riesgo</span>
+          <span class="lg"><i class="sw critico"></i>Crítico</span>
+        </div>
+        <div id="map"></div>
+      </div>
+
+      <div class="panel decision" id="decision">
+        <div class="decision-head">
+          <span class="dec-icon">◎</span> Centro de Decisión
+        </div>
+        <div class="decision-empty" id="decEmpty">
+          Selecciona una zona en el mapa para ver su diagnóstico.
+        </div>
+        <div class="decision-body hidden" id="decBody">
+          <h2 id="decZona">—</h2>
+          <div class="dec-row">
+            <div class="dec-metric"><span>Score Local</span><b id="decScore">—</b><em id="decNivel"></em></div>
+            <div class="dec-metric"><span>Tendencia</span><b id="decTend">—</b><em>respecto al año anterior</em></div>
+          </div>
+          <div class="dec-reco ia-block">
+            <div class="reco-title">
+              <span class="ia-badge">✦ IA</span>
+              Recomendación Estratégica
+            </div>
+            <p id="decReco">—</p>
+            <div class="ia-note">Generada por la IA del sistema a partir del diagnóstico del modelo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom row -->
+    <section class="grid-bottom">
+      <div class="panel">
+        <div class="panel-title">Factores del Riesgo</div>
+        <div class="panel-sub">Intensidad de cada factor (0 = sin presión · 100 = presión máxima)</div>
+        <div id="drivers" class="drivers"><p class="muted">Selecciona una zona.</p></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Evolución Territorial</div>
+        <canvas id="evoChart" height="150"></canvas>
+      </div>
+
+      <div class="panel intervention ia-block">
+        <div class="panel-title">
+          <span class="ia-badge">✦ IA</span>
+          Intervención Prioritaria
+        </div>
+        <ul id="acciones" class="acciones"><li class="muted">Selecciona una zona.</li></ul>
+        <div class="ia-note">Acciones sugeridas por la IA del sistema</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
