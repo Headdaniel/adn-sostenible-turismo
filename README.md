@@ -48,7 +48,7 @@ decisión por zona con score, tendencia, factores de riesgo y recomendaciones ge
 | **Periodo** | 2016–2024 (mensual) |
 | **Registros** | 3.348 |
 | **Variables** | 20 (16 features de entrada al modelo) |
-| **Fuentes** | 9 (RNT, Aeronáutica Civil, Migración Colombia, DANE, SUI, SIVIGILA, Terridata, NOAA, MGN) |
+| **Fuentes** | 9 oficiales · **3 de [datos.gov.co](docs/fuentes_datos.md#enlaces-directos-a-datosgovco)** (RNT, Aeronáutica Civil, Migración Colombia) |
 | **Modelo predictivo** | XGBRegressor · R²=0.998 (test) · R²=0.961±0.018 (CV 5-fold) |
 | **IA generativa** | Llama 4 Scout 17B (Groq) |
 | **Despliegue** | Hugging Face Spaces (FastAPI + Gradio + Leaflet) |

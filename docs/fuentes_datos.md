@@ -9,14 +9,12 @@ directamente del **Portal de Datos Abiertos del Estado colombiano** (datos.gov.c
 
 | Variable(s) | Conjunto de datos | Entidad |
 |---|---|---|
-| `rnt_prestadores` | Registro Nacional de Turismo — prestadores turísticos registrados | MinCIT |
-| `rnt_camas` | Registro Nacional de Turismo — capacidad de alojamiento (camas) | MinCIT |
-| `rnt_habitaciones` | Registro Nacional de Turismo — capacidad de alojamiento (habitaciones) | MinCIT |
-| `pasajeros_mun` | Estadísticas operacionales de transporte aéreo — pasajeros movilizados | Aeronáutica Civil |
-| `extranjeros_mun` | Flujo de visitantes extranjeros no residentes | Migración Colombia |
+| `rnt_prestadores`, `rnt_camas`, `rnt_habitaciones` | [Registro Nacional de Turismo (RNT)](https://www.datos.gov.co/Comercio-Industria-y-Turismo/Registro-Nacional-de-Turismo-RNT/thwd-ivmp/about_data) | MinCIT |
+| `pasajeros_mun` | [Transporte Aéreo Comercial — Tráfico Origen-Destino](https://www.datos.gov.co/Transporte/Transporte-A-reo-Comercial-Tr-fico-Origen-Destino-/gb6w-ynu4/about_data) | Aeronáutica Civil |
+| `extranjeros_mun` | [Entradas de extranjeros a Colombia](https://www.datos.gov.co/Estad-sticas-Nacionales/Entradas-de-extranjeros-a-Colombia/96sh-4v8d/about_data) | Migración Colombia |
 
-> **Nota para el evaluador:** las URLs específicas de cada conjunto en datos.gov.co se
-> listan en la sección *Enlaces directos* al final de este documento.
+Estas tres fuentes constituyen el **núcleo turístico del modelo**: las variables del RNT por
+sí solas concentran el 42.6% de la importancia del XGBoost.
 
 ## Otras fuentes oficiales integradas
 
@@ -71,18 +69,21 @@ Dataset resultante: [`../data/processed/dataset.csv`](../data/processed/dataset.
 
 ---
 
-## Enlaces directos
+## Enlaces directos a datos.gov.co
 
-> ⚠️ **Pendiente de completar antes de la sustentación.**
-> Insertar aquí las URLs exactas de cada conjunto en datos.gov.co, de modo que el jurado
-> pueda verificar y descargar las fuentes originales.
+Conjuntos verificables y descargables desde el Portal de Datos Abiertos del Estado
+colombiano:
 
-| Conjunto | URL |
-|---|---|
-| RNT — prestadores turísticos | `https://www.datos.gov.co/...` |
-| RNT — capacidad de alojamiento | `https://www.datos.gov.co/...` |
-| Aeronáutica Civil — pasajeros | `https://www.datos.gov.co/...` |
-| Migración Colombia — visitantes extranjeros | `https://www.datos.gov.co/...` |
+| Variables | Conjunto de datos | Entidad | URL |
+|---|---|---|---|
+| `rnt_prestadores`<br/>`rnt_camas`<br/>`rnt_habitaciones` | Registro Nacional de Turismo (RNT) | MinCIT | https://www.datos.gov.co/Comercio-Industria-y-Turismo/Registro-Nacional-de-Turismo-RNT/thwd-ivmp/about_data |
+| `extranjeros_mun` | Entradas de extranjeros a Colombia | Migración Colombia | https://www.datos.gov.co/Estad-sticas-Nacionales/Entradas-de-extranjeros-a-Colombia/96sh-4v8d/about_data |
+| `pasajeros_mun` | Transporte Aéreo Comercial — Tráfico Origen-Destino | Aeronáutica Civil | https://www.datos.gov.co/Transporte/Transporte-A-reo-Comercial-Tr-fico-Origen-Destino-/gb6w-ynu4/about_data |
+
+**Cumplimiento del requisito:** los términos de referencia exigen al menos un (1) conjunto
+proveniente de datos.gov.co. Este proyecto integra **tres**, y son el núcleo turístico del
+modelo: las variables del RNT concentran el **42.6% de la importancia** total del
+XGBoost.
 
 ---
 
