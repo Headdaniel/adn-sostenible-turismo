@@ -105,8 +105,8 @@ def meta():
     return {
         "anios": ANIOS,
         "n_zonas": DF["zona"].nunique(),
-        "n_variables": len(FEATURES),
-        "n_fuentes": 6,
+        "n_variables": 21,
+        "n_fuentes": 9,
         "rango_anios": f"{min(ANIOS)}–{max(ANIOS)}",
         "modelo": MODEL_CFG["modelo"],
         "r2": MODEL_CFG["metricas_test"]["R2"],
