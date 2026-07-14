@@ -4,6 +4,7 @@ Esta carpeta contiene el material visual del proyecto.
 
 ## Enlaces
 
-- **Demo en vivo:** https://theodoreart-inteligencia-turistica.hf.space
+- **Portada**(RECURSOS/portada.png)
 - **Presentación Canva:** https://canva.link/vdnoxim1hpmc0zl
-- **Presentación PDF:** 
+- **Presentación PDF:**(RECURSOS/deck.pdf)
+- **Demo en vivo:** https://theodoreart-inteligencia-turistica.hf.space
